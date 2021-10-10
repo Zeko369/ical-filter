@@ -4,9 +4,12 @@
   "main": "index.js",
   "author": "Fran Zekan",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "develop": "vercel dev"
+  },
   "dependencies": {
-    "undici": "^4.7.1"
+    "axios": "^0.22.0",
+    "node-ical": "^0.13.0"
   },
   "devDependencies": {
     "@vercel/node": "^1.12.1",
