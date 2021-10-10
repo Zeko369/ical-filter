@@ -76,6 +76,7 @@ const handler: VercelApiHandler = async (req, res) => {
     ...lines.slice(lastEventIndex),
   ];
 
+  res.setHeader("content-type", "text/calendar;charset=UTF-8");
   res.send(output.join("\n"));
 };
 
