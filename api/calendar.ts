@@ -10,17 +10,19 @@ const regexBuilder = (subject: string, type: string) => {
 
 const getIgnores = (withArh?: boolean) => {
   const base = [
-    regexBuilder("Vjerojatnost i statistika", "predavanje"),
-    regexBuilder("Vjerojatnost i statistika", "auditorna vježba"),
-    regexBuilder("Teorija informacije", "predavanje"),
-    regexBuilder("Programsko inženjerstvo", "predavanje"),
-    regexBuilder("Upravljanje znanjem", "predavanje"),
-    regexBuilder("Upravljanje znanjem", "auditorna vježba"),
+    // regexBuilder("Vjerojatnost i statistika", "predavanje"),
+    // regexBuilder("Vjerojatnost i statistika", "auditorna vježba"),
+    // regexBuilder("Teorija informacije", "predavanje"),
+    // regexBuilder("Programsko inženjerstvo", "predavanje"),
+    // regexBuilder("Upravljanje znanjem", "predavanje"),
+    // regexBuilder("Upravljanje znanjem", "auditorna vježba"),
+    regexBuilder("Operacijski sustavi", "predavanje"),
+    regexBuilder("Matematička analiza 2", "predavanje"),
   ];
 
-  if (!withArh) {
-    base.push(regexBuilder("Arhitektura računala 1R", "predavanje"));
-  }
+  // if (!withArh) {
+  //   base.push(regexBuilder("Arhitektura računala 1R", "predavanje"));
+  // }
 
   return base;
 };
