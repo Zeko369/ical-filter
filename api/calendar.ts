@@ -20,6 +20,7 @@ const getIgnores = (withArh?: boolean) => {
     regexBuilder("Operacijski sustavi", "auditorna vježba"),
     regexBuilder("Matematička analiza 2", "predavanje"),
     regexBuilder("Matematička analiza 2", "auditorna vježba"),
+    regexBuilder("Inženjerska ekonomika 2", "poslovna radionica"),
   ];
 
   // if (!withArh) {
