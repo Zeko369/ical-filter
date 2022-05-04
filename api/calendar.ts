@@ -16,11 +16,17 @@ const getIgnores = (withArh?: boolean) => {
     // regexBuilder("Programsko inženjerstvo", "predavanje"),
     // regexBuilder("Upravljanje znanjem", "predavanje"),
     // regexBuilder("Upravljanje znanjem", "auditorna vježba"),
+
     regexBuilder("Operacijski sustavi", "predavanje"),
     regexBuilder("Operacijski sustavi", "auditorna vježba"),
     regexBuilder("Matematička analiza 2", "predavanje"),
     regexBuilder("Matematička analiza 2", "auditorna vježba"),
     regexBuilder("Inženjerska ekonomika 2", "poslovna radionica"),
+    regexBuilder("Inženjerska ekonomika 2", "predavanje"),
+    regexBuilder(
+      "Odabrana poglavlja razvoja programske potpore 2",
+      "predavanje"
+    ),
   ];
 
   // if (!withArh) {
@@ -65,8 +71,13 @@ const handler: VercelApiHandler = async (req, res) => {
           })
       );
     })
-    .filter((event) => parseDate(event["DTEND;TZID=Europe/Zagreb"]).getTime() > Date.now())
-    .filter((event) => getIgnores(withArh).every((regex) => !regex.test(event["SUMMARY"])))
+    .filter(
+      (event) =>
+        parseDate(event["DTEND;TZID=Europe/Zagreb"]).getTime() > Date.now()
+    )
+    .filter((event) =>
+      getIgnores(withArh).every((regex) => !regex.test(event["SUMMARY"]))
+    )
     .map((event) =>
       Object.entries(event)
         .map(([key, value]) => `${key}:${value}`)
