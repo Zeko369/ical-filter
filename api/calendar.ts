@@ -46,8 +46,14 @@ const parseDate = (date: string): Date => {
   );
 };
 
+const calendarUrl = process.env["CALENDAR_URL"];
+
 const handler: VercelApiHandler = async (req, res) => {
-  const response = await axios.get<string>(process.env.CALENDAR_URL);
+  if (!calendarUrl) {
+    return res.status(500).json({ error: "CALENDAR_URL not set" });
+  }
+
+  const response = await axios.get<string>(calendarUrl);
   const lines = response.data.split("\n").map((line) => line.trim());
 
   const firstEventIndex = lines.indexOf(EVENT_BEGIN);
