@@ -1,0 +1,6 @@
+{
+  "extends": "./node_modules/zeko369-tsconfig/configs/tsconfig.json",
+  "compilerOptions": {
+    "outDir": "dist/"
+  }
+}
