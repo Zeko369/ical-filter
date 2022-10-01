@@ -23,10 +23,7 @@ const getIgnores = (withArh?: boolean) => {
     regexBuilder("Matematička analiza 2", "auditorna vježba"),
     regexBuilder("Inženjerska ekonomika 2", "poslovna radionica"),
     regexBuilder("Inženjerska ekonomika 2", "predavanje"),
-    regexBuilder(
-      "Odabrana poglavlja razvoja programske potpore 2",
-      "predavanje"
-    ),
+    regexBuilder("Odabrana poglavlja razvoja programske potpore 2", "predavanje"),
   ];
 
   // if (!withArh) {
@@ -50,7 +47,8 @@ const calendarUrl = process.env["CALENDAR_URL"];
 
 const handler: VercelApiHandler = async (req, res) => {
   if (!calendarUrl) {
-    return res.status(500).json({ error: "CALENDAR_URL not set" });
+    res.status(500).json({ error: "CALENDAR_URL not set" });
+    return;
   }
 
   const response = await axios.get<string>(calendarUrl);
@@ -77,13 +75,8 @@ const handler: VercelApiHandler = async (req, res) => {
           })
       );
     })
-    .filter(
-      (event) =>
-        parseDate(event["DTEND;TZID=Europe/Zagreb"]).getTime() > Date.now()
-    )
-    .filter((event) =>
-      getIgnores(withArh).every((regex) => !regex.test(event["SUMMARY"]))
-    )
+    .filter((event) => parseDate(event["DTEND;TZID=Europe/Zagreb"]).getTime() > Date.now())
+    .filter((event) => getIgnores(withArh).every((regex) => !regex.test(event["SUMMARY"])))
     .map((event) =>
       Object.entries(event)
         .map(([key, value]) => `${key}:${value}`)
