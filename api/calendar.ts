@@ -3,32 +3,24 @@ import axios from "axios";
 
 const EVENT_BEGIN = "BEGIN:VEVENT";
 const EVENT_END = "END:VEVENT";
+const SPLIT = `${EVENT_END}\n${EVENT_BEGIN}`;
 
 const regexBuilder = (subject: string, type: string) => {
   return new RegExp(`^${subject} - [0-9]*\\. ${type}`);
 };
 
-const getIgnores = (withArh?: boolean) => {
+const getIgnores = () => {
   const base = [
-    // regexBuilder("Vjerojatnost i statistika", "predavanje"),
+    regexBuilder("Vjerojatnost i statistika", "predavanje"),
     // regexBuilder("Vjerojatnost i statistika", "auditorna vježba"),
-    // regexBuilder("Teorija informacije", "predavanje"),
-    // regexBuilder("Programsko inženjerstvo", "predavanje"),
-    // regexBuilder("Upravljanje znanjem", "predavanje"),
-    // regexBuilder("Upravljanje znanjem", "auditorna vježba"),
+    regexBuilder("Teorija informacije", "predavanje"),
+    regexBuilder("Programsko inženjerstvo", "predavanje"),
 
-    regexBuilder("Operacijski sustavi", "predavanje"),
-    regexBuilder("Operacijski sustavi", "auditorna vježba"),
-    regexBuilder("Matematička analiza 2", "predavanje"),
-    regexBuilder("Matematička analiza 2", "auditorna vježba"),
-    regexBuilder("Inženjerska ekonomika 2", "poslovna radionica"),
-    regexBuilder("Inženjerska ekonomika 2", "predavanje"),
-    regexBuilder("Odabrana poglavlja razvoja programske potpore 2", "predavanje"),
+    // regexBuilder("Matematička analiza 2", "predavanje"),
+    // regexBuilder("Matematička analiza 2", "auditorna vježba"),
+    // regexBuilder("Inženjerska ekonomika 2", "poslovna radionica"),
+    // regexBuilder("Inženjerska ekonomika 2", "predavanje"),
   ];
-
-  // if (!withArh) {
-  //   base.push(regexBuilder("Arhitektura računala 1R", "predavanje"));
-  // }
 
   return base;
 };
@@ -44,7 +36,6 @@ const parseDate = (date: string): Date => {
 };
 
 const calendarUrl = process.env["CALENDAR_URL"];
-
 const handler: VercelApiHandler = async (req, res) => {
   if (!calendarUrl) {
     res.status(500).json({ error: "CALENDAR_URL not set" });
@@ -56,9 +47,6 @@ const handler: VercelApiHandler = async (req, res) => {
 
   const firstEventIndex = lines.indexOf(EVENT_BEGIN);
   const lastEventIndex = lines.lastIndexOf(EVENT_END);
-
-  const SPLIT = `${EVENT_END}\n${EVENT_BEGIN}`;
-  const withArh = req.query["withArh"] === "true";
 
   const filtered = lines
     .slice(firstEventIndex + 1, lastEventIndex)
@@ -75,8 +63,8 @@ const handler: VercelApiHandler = async (req, res) => {
           })
       );
     })
-    .filter((event) => parseDate(event["DTEND;TZID=Europe/Zagreb"]).getTime() > Date.now())
-    .filter((event) => getIgnores(withArh).every((regex) => !regex.test(event["SUMMARY"])))
+    // .filter((event) => parseDate(event["DTEND;TZID=Europe/Zagreb"]).getTime() > Date.now())
+    .filter((event) => getIgnores().every((regex) => !regex.test(event["SUMMARY"])))
     .map((event) =>
       Object.entries(event)
         .map(([key, value]) => `${key}:${value}`)
