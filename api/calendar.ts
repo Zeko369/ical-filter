@@ -9,33 +9,29 @@ const regexBuilder = (subject: string, type: string) => {
   return new RegExp(`^${subject} - [0-9]*\\. ${type}`);
 };
 
-const getIgnores = () => {
-  const base = [
-    regexBuilder("Vjerojatnost i statistika", "predavanje"),
-    // regexBuilder("Vjerojatnost i statistika", "auditorna vježba"),
-    regexBuilder("Teorija informacije", "predavanje"),
-    regexBuilder("Programsko inženjerstvo", "predavanje"),
+const IGNORES = [
+  regexBuilder("Vjerojatnost i statistika", "predavanje"),
+  // regexBuilder("Vjerojatnost i statistika", "auditorna vježba"),
+  regexBuilder("Teorija informacije", "predavanje"),
+  regexBuilder("Programsko inženjerstvo", "predavanje"),
 
-    regexBuilder("Programsko inženjerstvo", "laboratorijska vježba"),
+  regexBuilder("Programsko inženjerstvo", "laboratorijska vježba"),
 
-    // regexBuilder("Matematička analiza 2", "predavanje"),
-    // regexBuilder("Matematička analiza 2", "auditorna vježba"),
-    // regexBuilder("Inženjerska ekonomika 2", "poslovna radionica"),
-    // regexBuilder("Inženjerska ekonomika 2", "predavanje"),
-  ];
+  // regexBuilder("Matematička analiza 2", "predavanje"),
+  // regexBuilder("Matematička analiza 2", "auditorna vježba"),
+  // regexBuilder("Inženjerska ekonomika 2", "poslovna radionica"),
+  // regexBuilder("Inženjerska ekonomika 2", "predavanje"),
+];
 
-  return base;
-};
-
-const parseDate = (date: string): Date => {
-  return new Date(
-    parseInt(date.slice(0, 4)),
-    parseInt(date.slice(4, 6)),
-    parseInt(date.slice(6, 8)),
-    parseInt(date.slice(9, 11)),
-    parseInt(date.slice(11, 13))
-  );
-};
+// const parseDate = (date: string): Date => {
+//   return new Date(
+//     parseInt(date.slice(0, 4)),
+//     parseInt(date.slice(4, 6)),
+//     parseInt(date.slice(6, 8)),
+//     parseInt(date.slice(9, 11)),
+//     parseInt(date.slice(11, 13))
+//   );
+// };
 
 const calendarUrl = process.env["CALENDAR_URL"];
 const handler: VercelApiHandler = async (req, res) => {
@@ -66,7 +62,7 @@ const handler: VercelApiHandler = async (req, res) => {
       );
     })
     // .filter((event) => parseDate(event["DTEND;TZID=Europe/Zagreb"]).getTime() > Date.now())
-    .filter((event) => getIgnores().every((regex) => !regex.test(event["SUMMARY"])))
+    .filter((event) => IGNORES.every((regex) => !regex.test(event["SUMMARY"])))
     .map((event) =>
       Object.entries(event)
         .map(([key, value]) => `${key}:${value}`)
