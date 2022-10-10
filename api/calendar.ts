@@ -16,6 +16,8 @@ const getIgnores = () => {
     regexBuilder("Teorija informacije", "predavanje"),
     regexBuilder("Programsko inženjerstvo", "predavanje"),
 
+    regexBuilder("Programsko inženjerstvo", "laboratorijska vježba"),
+
     // regexBuilder("Matematička analiza 2", "predavanje"),
     // regexBuilder("Matematička analiza 2", "auditorna vježba"),
     // regexBuilder("Inženjerska ekonomika 2", "poslovna radionica"),
