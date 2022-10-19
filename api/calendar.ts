@@ -14,6 +14,8 @@ const IGNORES = [
   // regexBuilder("Vjerojatnost i statistika", "auditorna vježba"),
   regexBuilder("Teorija informacije", "predavanje"),
   regexBuilder("Programsko inženjerstvo", "predavanje"),
+  regexBuilder("Prevođenje programskih jezika", "predavanje"),
+  regexBuilder("Otvoreno računarstvo", "predavanje"),
 
   regexBuilder("Programsko inženjerstvo", "laboratorijska vježba"),
 
