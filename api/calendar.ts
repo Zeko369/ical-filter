@@ -11,7 +11,7 @@ const regexBuilder = (subject: string, type: string) => {
 
 const IGNORES = [
   regexBuilder("Vjerojatnost i statistika", "predavanje"),
-  // regexBuilder("Vjerojatnost i statistika", "auditorna vježba"),
+  regexBuilder("Vjerojatnost i statistika", "laboratorijska vježba"),
   regexBuilder("Teorija informacije", "predavanje"),
   regexBuilder("Programsko inženjerstvo", "predavanje"),
   regexBuilder("Prevođenje programskih jezika", "predavanje"),
