@@ -10,19 +10,18 @@ const regexBuilder = (subject: string, type: string) => {
 };
 
 const IGNORES = [
-  regexBuilder("Vjerojatnost i statistika", "predavanje"),
-  regexBuilder("Vjerojatnost i statistika", "laboratorijska vježba"),
-  regexBuilder("Teorija informacije", "predavanje"),
-  regexBuilder("Programsko inženjerstvo", "predavanje"),
-  regexBuilder("Prevođenje programskih jezika", "predavanje"),
-  regexBuilder("Otvoreno računarstvo", "predavanje"),
-
-  regexBuilder("Programsko inženjerstvo", "laboratorijska vježba"),
+  // regexBuilder("Vjerojatnost i statistika", "predavanje"),
+  // regexBuilder("Vjerojatnost i statistika", "laboratorijska vježba"),
+  // regexBuilder("Teorija informacije", "predavanje"),
+  // regexBuilder("Programsko inženjerstvo", "predavanje"),
+  // regexBuilder("Prevođenje programskih jezika", "predavanje"),
+  // regexBuilder("Otvoreno računarstvo", "predavanje"),
+  // regexBuilder("Programsko inženjerstvo", "laboratorijska vježba"),
 
   // regexBuilder("Matematička analiza 2", "predavanje"),
   // regexBuilder("Matematička analiza 2", "auditorna vježba"),
-  // regexBuilder("Inženjerska ekonomika 2", "poslovna radionica"),
-  // regexBuilder("Inženjerska ekonomika 2", "predavanje"),
+  regexBuilder("Inženjerska ekonomika 2", "poslovna radionica"),
+  regexBuilder("Inženjerska ekonomika 2", "predavanje"),
 ];
 
 // const parseDate = (date: string): Date => {
