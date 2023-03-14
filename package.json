@@ -1,15 +1,12 @@
 {
   "name": "ical-filter",
   "version": "1.0.0",
-  "main": "index.js",
   "author": "Fran Zekan",
   "license": "MIT",
   "scripts": {
-    "develop": "vercel dev"
+    "dev": "vercel dev"
   },
-  "dependencies": {
-    "axios": "^0.22.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@types/node": "^18.7.23",
     "@vercel/node": "^1.12.1",

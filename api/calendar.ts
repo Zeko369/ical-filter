@@ -1,5 +1,4 @@
 import { VercelApiHandler } from "@vercel/node";
-import axios from "axios";
 
 const EVENT_BEGIN = "BEGIN:VEVENT";
 const EVENT_END = "END:VEVENT";
@@ -45,8 +44,8 @@ const handler: VercelApiHandler = async (req, res) => {
     return;
   }
 
-  const response = await axios.get<string>(calendarUrl);
-  const lines = response.data.split("\n").map((line) => line.trim());
+  const data = await fetch(calendarUrl).then((res) => res.text());
+  const lines = data.split("\n").map((line) => line.trim());
 
   const firstEventIndex = lines.indexOf(EVENT_BEGIN);
   const lastEventIndex = lines.lastIndexOf(EVENT_END);
