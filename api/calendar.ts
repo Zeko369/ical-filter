@@ -20,10 +20,12 @@ const IGNORES = [
 
   // regexBuilder("Matematička analiza 2", "predavanje"),
   // regexBuilder("Matematička analiza 2", "auditorna vježba"),
+
   regexBuilder("Inženjerska ekonomika 2", "poslovna radionica"),
   regexBuilder("Inženjerska ekonomika 2", "predavanje"),
   regexBuilder("Uvod u umjetnu inteligenciju", "predavanje"),
   regexBuilder("Sigurnost računalnih sustava", "predavanje"),
+  regexBuilder("Interaktivna računalna grafika", "predavanje"),
 ];
 
 // const parseDate = (date: string): Date => {
