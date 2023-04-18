@@ -24,7 +24,7 @@ const IGNORES = [
   regexBuilder("Inženjerska ekonomika 2", "predavanje"),
   regexBuilder("Uvod u umjetnu inteligenciju", "predavanje"),
   regexBuilder("Sigurnost računalnih sustava", "predavanje"),
-  regexBuilder("Interaktivna računalna grafika", "predavanje"),
+  // regexBuilder("Interaktivna računalna grafika", "predavanje"),
 ];
 
 // const parseDate = (date: string): Date => {
